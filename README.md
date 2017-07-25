@@ -1,6 +1,6 @@
 # Wercker-maven
 
-Wercker step to install gradle.
+Wercker step to install maven.
 
 ### Parameters
 
