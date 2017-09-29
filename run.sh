@@ -40,10 +40,8 @@ if [ hash curl 2>/dev/null ] ; then
   exit 1
 fi
 
-if [ hash tar 2>/dev/null ] ; then
-  echo "$(date +%H:%M:%S):  tar is required, install tar before this step"
-  exit 1
-fi
+# check that tar is installed
+hash tar 2>/dev/null || { echo "$(date +%H:%M:%S):  tar is required, install tar before this step"; exit 1; }
 
 if [ hash md5sum 2>/dev/null ] ; then
   echo "$(date +%H:%M:%S):  md5sum is required to validate the download, please install it before running this step"
