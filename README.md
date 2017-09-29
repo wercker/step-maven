@@ -1,18 +1,34 @@
-# Wercker-maven
+# maven-step
+A Wercker step to run Apache Maven build tasks.
 
-Wercker step to install maven and run a command.
 
-## Example
 
-```yaml
-build:
-  steps:
-    - maven:
-        command: compile
-        version: 3.5.0
-```
+## Usage
 
-### Options
 
-- `command` (required): maven task [install, build, compile].
-- `version` (optional): maven 3 version to use.
+
+## Parameters
+
+* `pom`
+<br>
+
+* `settings`
+<br>
+
+* `security_settings`
+<br> 
+
+* `goals` (required)
+<br> 
+
+* `profiles`
+<br> 
+
+* `maven_opts`
+<br>
+
+* `debug`
+<br>
+
+* `version`
+<br>

@@ -1,14 +1,32 @@
-name: maven
-version: 0.1.0
-description: Install maven and prepare to run
+name: maven-step
+version: 0.1.1
+description: Execute Maven for Java projects.
 keywords:
-  - maven
   - java
+  - maven
+  - build
 properties:
-  command:
+  pom:
+    type: string
+    required: false
+  settings:
+    type: string
+    required: false
+  security_settings:
+    type: string
+    required: false
+  goals:
     type: string
     required: true
+  profiles:
+    type: string
+    required: false
+  maven_opts:
+    type: string
+    required: false
+  debug:
+    type: string
+    required: false
   version:
     type: string
     required: false
-    default: 3.5.0
