@@ -1,5 +1,5 @@
 name: step-maven
-version: 0.1.9
+version: 0.1.10
 description: Execute Maven for Java projects.
 keywords:
   - java

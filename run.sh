@@ -112,6 +112,7 @@ export MAVEN_OPTS="$WERCKER_STEP_MAVEN_MAVEN_OPTS"
 
 if [[ -z "$WERCKER_STEP_MAVEN_SECURITY_SETTINGS" ]]; then
   # do nothing
+  echo "" > /dev/null
 else
   cp $WERCKER_STEP_MAVEN_SECURITY_SETTINGS $M2_HOME/
 fi
