@@ -1,4 +1,4 @@
-# maven-step
+# step-maven
 A Wercker step to run Apache Maven build tasks.
 
 
