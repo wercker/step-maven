@@ -35,18 +35,14 @@ else
   exit 1
 fi
 
-if [ hash curl 2>/dev/null ] ; then
-  echo "$(date +%H:%M:%S):  curl is required to install maven, install curl before this step."
-  exit 1
-fi
+# check that curl is installed
+hash curl 2>/dev/null || { echo "$(date +%H:%M:%S):  curl is required to install maven, install curl before this step."; exit 1; }
 
 # check that tar is installed
 hash tar 2>/dev/null || { echo "$(date +%H:%M:%S):  tar is required, install tar before this step"; exit 1; }
 
-if [ hash md5sum 2>/dev/null ] ; then
-  echo "$(date +%H:%M:%S):  md5sum is required to validate the download, please install it before running this step"
-  exit 1
-fi
+# check that md5sum installed
+hash md5sum 2>/dev/null || { echo "$(date +%H:%M:%S):  md5sum is required to validate the download, please install it before running this step"; exit 1; }
 
 if [ ! -d "/maven" ]; then
   mkdir /maven
@@ -109,6 +105,7 @@ fi
 # set the M2_HOME
 # put security-settings.xml in the right place
 export M2_HOME="/maven/apache-maven-$WERCKER_STEP_MAVEN_VERSION"
+export MAVEN_OPTS="$WERCKER_STEP_MAVEN_MAVEN_OPTS"
 
 if [[ -z "$WERCKER_STEP_MAVEN_SECURITY_SETTINGS" ]]; then
   // do nothing
