@@ -41,6 +41,9 @@ hash curl 2>/dev/null || { echo "$(date +%H:%M:%S):  curl is required to install
 # check that tar is installed
 hash tar 2>/dev/null || { echo "$(date +%H:%M:%S):  tar is required, install tar before this step"; exit 1; }
 
+# check that gzip is installed
+hash gzip 2>/dev/null || { echo "$(date +%H:%M:%S):  gzip is required, install gzip before this step"; exit 1; }
+
 # check that md5sum installed
 hash md5sum 2>/dev/null || { echo "$(date +%H:%M:%S):  md5sum is required to validate the download, please install it before running this step"; exit 1; }
 

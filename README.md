@@ -8,7 +8,9 @@ Downloading and installing Maven as part of the step (rather than having it prei
 
 ## Requirements
 
-The box that you run this step in must have `curl`, `tar`, `md5sum` and a JDK installed in it. 
+The box that you run this step in must either have `curl`, `tar`, `gzip`, and `md5sum` installed in it, or it must have Maven already installed in `/maven`.  It is preferred that Maven is not pre-installed, in order to keep the image size a small as possible.
+
+Additionally, it must have a JDK installed in it (as Maven requires a JDK).
 
 
 ## Usage
