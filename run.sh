@@ -31,28 +31,28 @@ if [ -n "$JAVA_HOME" ] ; then
     exit 1
   fi
 else
-  echo '$(date +%H:%M:%S):  Maven requires java to work, please ensure Java is installed and JAVA_HOME set correctly'
+  echo "$(date +%H:%M:%S):  Maven requires java to work, please ensure Java is installed and JAVA_HOME set correctly"
   exit 1
 fi
 
 if [ hash curl 2>/dev/null ] ; then
-  echo '$(date +%H:%M:%S):  curl is required to install maven, install curl before this step.'
+  echo "$(date +%H:%M:%S):  curl is required to install maven, install curl before this step."
   exit 1
 fi
 
 if [ hash tar 2>/dev/null ] ; then
-  echo '$(date +%H:%M:%S):  tar is required, install tar before this step'
+  echo "$(date +%H:%M:%S):  tar is required, install tar before this step"
   exit 1
 fi
 
 if [ hash md5sum 2>/dev/null ] ; then
-  echo '$(date +%H:%M:%S):  md5sum is required to validate the download, please install it before running this step'
+  echo "$(date +%H:%M:%S):  md5sum is required to validate the download, please install it before running this step"
   exit 1
 fi
 
 if [ ! -d "/maven" ]; then
   mkdir /maven
-  echo '$(date +%H:%M:%S):  Downloading Maven'
+  echo "$(date +%H:%M:%S):  Downloading Maven"
   curl -O https://www.apache.org/dist/maven/maven-3/$WERCKER_STEP_MAVEN_VERSION/binaries/apache-maven-$WERCKER_STEP_MAVEN_VERSION-bin.tar.gz
   curl -O https://www.apache.org/dist/maven/maven-3/$WERCKER_STEP_MAVEN_VERSION/binaries/apache-maven-$WERCKER_STEP_MAVEN_VERSION-bin.tar.gz.md5
 
@@ -66,7 +66,7 @@ if [ ! -d "/maven" ]; then
     exit 1
   fi
 
-  echo '$(date +%H:%M:%S):  Extracting maven '
+  echo "$(date +%H:%M:%S):  Extracting maven "
   tar -C /maven -zxf apache-maven-$WERCKER_STEP_MAVEN_VERSION-bin.tar.gz
   rm apache-maven-$WERCKER_STEP_MAVEN_VERSION-bin.tar.gz*
 
@@ -75,7 +75,7 @@ else
       echo "$(date +%H:%M:%S):  ERROR:  maven was not installed properly"
       exit 1
   fi
-  echo '$(date +%H:%M:%S):  Maven already present'
+  echo "$(date +%H:%M:%S):  Maven already present"
 fi
 
 export PATH=$PATH:/maven/apache-maven-$WERCKER_STEP_MAVEN_VERSION/bin
