@@ -111,7 +111,7 @@ export M2_HOME="/maven/apache-maven-$WERCKER_STEP_MAVEN_VERSION"
 export MAVEN_OPTS="$WERCKER_STEP_MAVEN_MAVEN_OPTS"
 
 if [[ -z "$WERCKER_STEP_MAVEN_SECURITY_SETTINGS" ]]; then
-  // do nothing
+  # do nothing
 else
   cp $WERCKER_STEP_MAVEN_SECURITY_SETTINGS $M2_HOME/
 fi
