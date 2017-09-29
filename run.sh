@@ -116,9 +116,18 @@ else
   cp $WERCKER_STEP_MAVEN_SECURITY_SETTINGS $M2_HOME/
 fi
 
+# put the local repository into the Wercker Cache directory, so that it
+# would still be available on subsequent runs (unless cache is cleared)
+# keeping this optional because of bug https://github.com/wercker/wercker/issues/139
+if [ "$WERCKER_STEP_MAVEN_CACHE_REPO" = "true" ]; then
+  CACHE_REPO=""
+else
+  CAHCE_REPO="-Dmaven.repo.local=$WERCKER_CACHE_DIR/.m2"
+fi
+
 #
 # run the maven command
 #
-mvn $DEBUG $SETTINGS $PROFILES $MAVEN_OPTS $WERCKER_STEP_MAVEN_GOALS
+mvn $CACHE_REPO $DEBUG $SETTINGS $PROFILES $MAVEN_OPTS $WERCKER_STEP_MAVEN_GOALS
 
 

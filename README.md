@@ -76,6 +76,8 @@ All parameters are optional unless otherwise specified.
 * `version`
 <br>Specify the version of Maven that you wish to use.  (Only Maven versions 3.x.x are supported).  If not specified, this will default to `3.5.0`.
 
+* `cache_repo`
+<br>If set to `true` then the Maven local repository will be placed in the Wercker cache, meaning that it will still be available in subsequent builds (unless the cache is cleared) and thereby reducing the time required to donwload all the dependencies, plugins, etc.  The default value is currently `false` due to bug [https://github.com/wercker/wercker/issues/139](https://github.com/wercker/wercker/issues/139), but this may be changed in the future, when that bug is resolved.
 
 ## Sample Application
 
