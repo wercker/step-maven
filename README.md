@@ -68,7 +68,7 @@ All parameters are optional unless otherwise specified.
 <br>If you wish to enable any profiles, provide a comma-separated list of profile names.
 
 * `maven_opts`
-<br>This parameter allows you to provide any settings you wish to have included in the `MAVEN_OPTS`.  For example, you may wish to specify Maven use a larger heap by specifying something like `MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=1024m"`.
+<br>This parameter allows you to provide any settings you wish to have included in the `MAVEN_OPTS`.  For example, you may wish to specify Maven use a larger heap by specifying something like `MAVEN_OPTS="-Xmx1024m"`.
 
 * `debug`
 <br>Run Maven with the debug flags (`-X -e`) turned on.
