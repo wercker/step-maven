@@ -4,7 +4,7 @@
 
 echo "$(date +%H:%M:%S):  Hello from the Maven Wercker Step"
 echo "For information on how to use this step, please review the documentation in the Wercker Marketplace,"
-echo "or visit https://github.com/wercker/maven-step"
+echo "or visit https://github.com/wercker/step-maven"
 
 # check that all of the required parameters were provided
 # note that wercker does not enforce this for us, so we have to check
