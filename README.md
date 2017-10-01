@@ -21,7 +21,7 @@ To use this step, include it in your `wercker.yml` pipeline, for example:
 ```
 build:
   steps:
-    - wercker/step-maven:
+    - java/maven:
       goals: clean install 
       settings: my-settings.xml
       profiles: prod
