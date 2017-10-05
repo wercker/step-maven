@@ -1,5 +1,5 @@
 name: maven
-version: 0.2.4
+version: 0.2.3
 description: Execute Maven for Java projects.
 keywords:
   - java
