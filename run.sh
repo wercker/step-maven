@@ -9,8 +9,7 @@ echo "or visit https://github.com/wercker/step-maven"
 # check that all of the required parameters were provided
 # note that wercker does not enforce this for us, so we have to check
 if [[ -z "$WERCKER_MAVEN_GOALS" ]]; then
-  echo "$(date +%H:%M:%S): All required parameters: goals MUST be specified"
-  exit 9
+  fail "$(date +%H:%M:%S): All required parameters: goals MUST be specified"
 fi
 
 #
@@ -20,19 +19,16 @@ if [[ -z "$WERCKER_MAVEN_VERSION" ]]; then
   WERCKER_MAVEN_VERSION="3.5.0"
 fi
 
-
 #
 # check we have everything we need to run Maven
 #
 
 if [ -n "$JAVA_HOME" ] ; then
   if [ ! -x "$JAVA_HOME/bin/java" ] ; then
-    echo "$(date +%H:%M:%S):  ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME"
-    exit 1
+    fail "$(date +%H:%M:%S):  ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME"
   fi
 else
-  echo "$(date +%H:%M:%S):  Maven requires java to work, please ensure Java is installed and JAVA_HOME set correctly"
-  exit 1
+  fail "$(date +%H:%M:%S):  Maven requires java to work, please ensure Java is installed and JAVA_HOME set correctly"
 fi
 
 # check that curl is installed
@@ -59,8 +55,7 @@ if [ ! -d "/maven" ]; then
   if [ "$CHECK1" = "$CHECK2" ] ; then
     echo "$(date +%H:%M:%S):  checksum matches"
   else
-    echo "$(date +%H:%M:%S):  checksum does not match"
-    exit 1
+    fail "$(date +%H:%M:%S):  checksum does not match"
   fi
 
   echo "$(date +%H:%M:%S):  Extracting maven "
