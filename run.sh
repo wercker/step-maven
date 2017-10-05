@@ -116,9 +116,9 @@ fi
 # would still be available on subsequent runs (unless cache is cleared)
 # keeping this optional because of bug https://github.com/wercker/wercker/issues/139
 if [ "$WERCKER_MAVEN_CACHE_REPO" = "true" ]; then
-  CACHE_REPO=""
-else
   CAHCE_REPO="-Dmaven.repo.local=$WERCKER_CACHE_DIR/.m2"
+else
+  CACHE_REPO=""
 fi
 
 #
