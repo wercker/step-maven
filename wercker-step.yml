@@ -30,6 +30,6 @@ properties:
   version:
     type: string
     required: false
-  cahce_repo:
+  cache_repo:
     type: string
     required: false
