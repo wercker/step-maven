@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright 2017, Oracle and/or its affiliates. All rights reserved.
+# Copyright 2017, 2018, Oracle and/or its affiliates. All rights reserved.
 
 debug "$(date +%H:%M:%S):  Hello from the Maven Wercker Step"
 info "For information on how to use this step, please review the documentation "
