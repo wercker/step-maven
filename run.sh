@@ -35,6 +35,9 @@ if [[ ! -z "$WERCKER_MAVEN_VERSION" ]]; then
   # check that md5sum installed
   hash md5sum 2>/dev/null || { fail "$(date +%H:%M:%S):  md5sum is required to validate the download, please install it before running this step"; }
 
+  # check that procps is installed
+  hash ps 2>/dev/null || { fail "$(date +%H:%M:%S):  The procps package is required for surefire test execution, install procps before this step"; }
+
   if [ ! -d "/maven" ]; then
     mkdir /maven
   fi
