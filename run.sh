@@ -32,8 +32,8 @@ if [[ ! -z "$WERCKER_MAVEN_VERSION" ]]; then
   # check that gzip is installed
   hash gzip 2>/dev/null || { fail "$(date +%H:%M:%S):  gzip is required, install gzip before this step"; }
 
-  # check that md5sum installed
-  hash md5sum 2>/dev/null || { fail "$(date +%H:%M:%S):  md5sum is required to validate the download, please install it before running this step"; }
+  # check that sha1sum installed
+  hash sha1sum 2>/dev/null || { fail "$(date +%H:%M:%S):  sha1sum is required to validate the download, please install it before running this step"; }
 
   # check that procps is installed
   hash ps 2>/dev/null || { fail "$(date +%H:%M:%S):  The procps package is required for surefire test execution, install procps before this step"; }
@@ -46,8 +46,8 @@ if [[ ! -z "$WERCKER_MAVEN_VERSION" ]]; then
   curl -O https://www.apache.org/dist/maven/maven-3/$WERCKER_MAVEN_VERSION/binaries/apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz
   curl -O https://www.apache.org/dist/maven/maven-3/$WERCKER_MAVEN_VERSION/binaries/apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz.md5
 
-  CHECK1=$(cat apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz.md5)
-  CHECK2=$(md5sum apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz)
+  CHECK1=$(cat apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz.sha1)
+  CHECK2=$(sha1sum apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz)
   CHECK1="$CHECK1  apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz"
   if [ "$CHECK1" = "$CHECK2" ] ; then
     debug "$(date +%H:%M:%S):  checksum matches"
