@@ -17,7 +17,7 @@ if you have a lot of transitive dependencies.
 
 The box must have a JDK installed in it (as Maven requires a JDK).
 
-If you're running a box that does not have maven pre-installed, you must have `curl`, `tar`, `gzip`, and `md5sum` installed to download and install Maven.  Additionally, `procps` must be installed to prevent failures when surefire attempts to fork JVM processes to run tests.  This requirement (for `procps`) will likely be removed when surefire 0.22 is released.
+If you're running a box that does not have maven pre-installed, you must have `curl`, `tar`, `gzip`, and `sha1sum` installed to download and install Maven.  Additionally, `procps` must be installed to prevent failures when surefire attempts to fork JVM processes to run tests.  This requirement (for `procps`) will likely be removed when surefire 0.22 is released.
 
 
 ## Usage
@@ -29,7 +29,7 @@ assumes that the box already has Maven installed.
 build:
   box: maven:3.5.2-jdk-8
   steps:
-    - java/maven:
+    - wercker/maven:
       goals: clean install
       settings: my-settings.xml
       profiles: prod
@@ -42,7 +42,7 @@ before building, simply use the following example:
 ```
 build:
   steps:
-    - java/maven:
+    - wercker/maven:
       goals: clean install
       settings: my-settings.xml
       profiles: prod
