@@ -5,6 +5,10 @@
 debug "$(date +%H:%M:%S):  Hello from the Maven Wercker Step"
 info "For information on how to use this step, please review the documentation "
 info "in the Wercker Marketplace, or visit https://github.com/wercker/step-maven"
+info ""
+info "IMPORTANT NOTICE: we are changing the 'owner' of this step from java to wercker."
+info "                  Please update your wercker.yml to use 'wercker/maven' instead"
+info "                  of 'java/maven' to ensure you get future updates!"
 
 # check that all of the required parameters were provided
 # note that wercker does not enforce this for us, so we have to check
