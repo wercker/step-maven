@@ -55,31 +55,31 @@ build:
 All parameters are optional unless otherwise specified.
 
 * `pom`
-<br>The name of the Maven POM file to use.  If not specified, the value is assumed to be `pom.xml`.
+The name of the Maven POM file to use.  If not specified, the value is assumed to be `pom.xml`.
 
 * `settings`
-<br>If you wish to provide your own `settings.xml` file, use this parameter to specify the filename of the file you wish to have Maven use as the `settings.xml`.
+If you wish to provide your own `settings.xml` file, use this parameter to specify the filename of the file you wish to have Maven use as the `settings.xml`.
 
 * `security_settings`
-<br>If you wish to provide you own `settings-security.xml` file, use this parameter to specify the filename of the file you wish to have Maven use as the `settings-security.xml`.
+If you wish to provide you own `settings-security.xml` file, use this parameter to specify the filename of the file you wish to have Maven use as the `settings-security.xml`.
 
 * `goals` (required)
-<br>Specify the Maven goals to execute.  This should be a space-separated list of goals (and/or phases).
+Specify the Maven goals to execute.  This should be a space-separated list of goals (and/or phases).
 
 * `profiles`
-<br>If you wish to enable any profiles, provide a comma-separated list of profile names.
+If you wish to enable any profiles, provide a comma-separated list of profile names.
 
 * `maven_opts`
-<br>This parameter allows you to provide any settings you wish to have included in the `MAVEN_OPTS`.  For example, you may wish to specify Maven use a larger heap by specifying something like `MAVEN_OPTS="-Xmx1024m"`.
+This parameter allows you to provide any settings you wish to have included in the `MAVEN_OPTS`.  For example, you may wish to specify Maven use a larger heap by specifying something like `MAVEN_OPTS="-Xmx1024m"`.
 
 * `debug`
-<br>Run Maven with the debug flags (`-X -e`) turned on.
+Run Maven with the debug flags (`-X -e`) turned on.
 
 * `version`
-<br>If you would like to install Maven, specify which version you wish to use.  (Only Maven versions 3.x.x are supported).  If not specified, it is expected that Maven is already be installed. You can find a list of available versions from [https://www.apache.org/dist/maven/maven-3/](https://www.apache.org/dist/maven/maven-3/).
+If you would like to install Maven, specify which version you wish to use.  (Only Maven versions 3.x.x are supported).  If not specified, it is expected that Maven is already be installed. You can find a list of available versions from [https://www.apache.org/dist/maven/maven-3/](https://www.apache.org/dist/maven/maven-3/).
 
 * `cache_repo`
-<br>If set to `true` then the Maven local repository will be placed in the Wercker cache, meaning that it will still be available in subsequent builds (unless the cache is cleared) and thereby reducing the time required to download all the dependencies, plugins, etc.  The default value is currently `false` due to bug [https://github.com/wercker/wercker/issues/139](https://github.com/wercker/wercker/issues/139), but this may be changed in the future, when that bug is resolved.
+If set to `true` then the Maven local repository will be placed in the Wercker cache, meaning that it will still be available in subsequent builds (unless the cache is cleared) and thereby reducing the time required to download all the dependencies, plugins, etc.  The default value is currently `false` due to bug [https://github.com/wercker/wercker/issues/139](https://github.com/wercker/wercker/issues/139), but this may be changed in the future, when that bug is resolved.
 
 
 ## Sample Application
