@@ -87,3 +87,7 @@ If set to `true` then the Maven local repository will be placed in the Wercker c
 A sample application is provided at
 [https://github.com/markxnelson/sample-maven-step](https://github.com/markxnelson/sample-maven-step)
 that demonstrates how to use this step.
+
+## Contributing to this repository 
+
+Oracle welcomes contributions to this repository from anyone.  Please see [CONTRIBUTING](CONTRIBUTING.md) for more information. 
