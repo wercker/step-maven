@@ -43,8 +43,8 @@ if [[ ! -z "$WERCKER_MAVEN_VERSION" ]]; then
   fi
 
   debug "$(date +%H:%M:%S):  Downloading Maven"
-  curl -O https://www.apache.org/dist/maven/maven-3/$WERCKER_MAVEN_VERSION/binaries/apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz
-  curl -O https://www.apache.org/dist/maven/maven-3/$WERCKER_MAVEN_VERSION/binaries/apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz.sha1
+  curl -O https://archive.apache.org/dist/maven/maven-3/$WERCKER_MAVEN_VERSION/binaries/apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz
+  curl -O https://archive.apache.org/dist/maven/maven-3/$WERCKER_MAVEN_VERSION/binaries/apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz.sha1
 
   CHECK1=$(cat apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz.sha1)
   CHECK2=$(sha1sum apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz)
