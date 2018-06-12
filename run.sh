@@ -94,6 +94,12 @@ else
   SETTINGS="-s $WERCKER_MAVEN_SETTINGS"
 fi
 
+if [[ -z "$WERCKER_MAVEN_POM" ]]; then
+  POM=""
+else
+  POM="-f $WERCKER_MAVEN_POM"
+fi
+
 # Set the M2_HOME
 # Put security-settings.xml in the right place
 export M2_HOME="/maven/apache-maven-$WERCKER_MAVEN_VERSION"
@@ -112,4 +118,4 @@ if [ "$WERCKER_MAVEN_CACHE_REPO" = "true" ]; then
 fi
 
 # Run the Maven command
-mvn $DEBUG $SETTINGS $PROFILES $MAVEN_OPTS $WERCKER_MAVEN_GOALS
+mvn $DEBUG $SETTINGS $PROFILES $MAVEN_OPTS $POM $WERCKER_MAVEN_GOALS
