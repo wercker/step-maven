@@ -81,6 +81,8 @@ If you would like to install Maven, specify which version you wish to use.  (Onl
 * `cache_repo`
 If set to `true` then the Maven local repository will be placed in the Wercker cache, meaning that it will still be available in subsequent builds (unless the cache is cleared) and thereby reducing the time required to download all the dependencies, plugins, etc.  The default value is currently `false` due to bug [https://github.com/wercker/wercker/issues/139](https://github.com/wercker/wercker/issues/139), but this may be changed in the future, when that bug is resolved.
 
+* `sudo_user`
+If provided, Maven will be executed using this user.  You must ensure the user is created and `sudo` is installed before running the maven step.
 
 ## Sample Application
 

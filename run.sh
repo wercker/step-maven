@@ -117,5 +117,15 @@ if [ "$WERCKER_MAVEN_CACHE_REPO" = "true" ]; then
   MAVEN_OPTS="$MAVEN_OPTS -Dmaven.repo.local=$WERCKER_CACHE_DIR/.m2"
 fi
 
+CMD="mvn $DEBUG $SETTINGS $PROFILES $MAVEN_OPTS $POM $WERCKER_MAVEN_GOALS"
 # Run the Maven command
-mvn $DEBUG $SETTINGS $PROFILES $MAVEN_OPTS $POM $WERCKER_MAVEN_GOALS
+if [[ -z "$WERCKER_MAVEN_SUDO_USER" ]]; then 
+  $CMD
+else
+  hash sudo 2>/dev/null || { fail "$(date +%H:%M:%S):  sudo must be installed if you specify sudo_user, install sudo before this step"; }
+  chown -R $WERCKER_MAVEN_SUDO_USER $WERCKER_ROOT
+  chown -R $WERCKER_MAVEN_SUDO_USER $M2_HOME
+  chown -R $WERCKER_MAVEN_SUDO_USER $WERCKER_CACHE_DIR
+  XCMD="cd $WERCKER_ROOT; PATH=$PATH M2_HOME=$M2_HOME $CMD"
+  /usr/bin/sudo -i -u $WERCKER_MAVEN_SUDO_USER -- bash -c "$XCMD"
+fi
