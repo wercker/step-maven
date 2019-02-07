@@ -2,6 +2,16 @@
 
 # Copyright 2017, 2018, Oracle and/or its affiliates. All rights reserved.
 
+function url_exists()
+{
+    local _url=$1
+    if curl --output /dev/null --silent --head --fail "$_url"; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 debug "$(date +%H:%M:%S):  Hello from the Maven Wercker Step"
 info "For information on how to use this step, please review the documentation "
 info "in the Wercker Marketplace, or visit https://github.com/wercker/step-maven"
@@ -35,6 +45,12 @@ if [[ ! -z "$WERCKER_MAVEN_VERSION" ]]; then
   # check that sha1sum installed
   hash sha1sum 2>/dev/null || { fail "$(date +%H:%M:%S):  sha1sum is required to validate the download, please install it before running this step"; }
 
+  # check that sha256sum installed
+  hash sha256sum 2>/dev/null || { fail "$(date +%H:%M:%S):  sha256sum is required to validate the download, please install it before running this step"; }
+
+  # check that sha512sum installed
+  hash sha512sum 2>/dev/null || { fail "$(date +%H:%M:%S):  sha512sum is required to validate the download, please install it before running this step"; }
+
   # check that procps is installed
   hash ps 2>/dev/null || { fail "$(date +%H:%M:%S):  The procps package is required for surefire test execution, install procps before this step"; }
 
@@ -42,12 +58,29 @@ if [[ ! -z "$WERCKER_MAVEN_VERSION" ]]; then
     mkdir /maven
   fi
 
-  debug "$(date +%H:%M:%S):  Downloading Maven"
-  curl -O https://archive.apache.org/dist/maven/maven-3/$WERCKER_MAVEN_VERSION/binaries/apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz
-  curl -O https://archive.apache.org/dist/maven/maven-3/$WERCKER_MAVEN_VERSION/binaries/apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz.sha1
+  _maven_dist_url="https://archive.apache.org/dist/maven/maven-3/$WERCKER_MAVEN_VERSION/binaries/apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz"
 
-  CHECK1=$(cat apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz.sha1)
-  CHECK2=$(sha1sum apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz)
+  checksum=
+  checksum=
+  if url_exists "${_maven_dist_url}.sha512" ; then
+      checksum=sha512
+  elif url_exists "${_maven_dist_url}.sha256" ; then
+      checksum=sha256
+  elif url_exists "${_maven_dist_url}.sha1" ; then
+      checksum=sha1
+  else
+      echo "Cannot find maven distribution checksum file ${_maven_dist_url}.[sha512|sha251|sha1]"
+      exit 1
+  fi
+
+  curl -s -O https://archive.apache.org/dist/maven/maven-3/$WERCKER_MAVEN_VERSION/binaries/apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz.${checksum}
+
+  debug "$(date +%H:%M:%S):  Downloading Maven"
+  curl -# -O "$_maven_dist_url"
+
+  checksum_cmd="${checksum}sum"
+  CHECK1=$(cat apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz.$checksum | cut -d' ' -f1)
+  CHECK2=$($checksum_cmd apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz)
   CHECK1="$CHECK1  apache-maven-$WERCKER_MAVEN_VERSION-bin.tar.gz"
   if [ "$CHECK1" = "$CHECK2" ] ; then
     debug "$(date +%H:%M:%S):  checksum matches"
